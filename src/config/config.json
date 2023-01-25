@@ -1,0 +1,13 @@
+{
+    "settings": {
+                "server_ip" : "localhost",
+                "server_port": 9673,
+                "endpoint": "commands",
+                "headers":{
+                          "Content-Type": "application/json"
+                          }
+                }
+
+
+
+}

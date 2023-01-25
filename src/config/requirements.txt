@@ -1,0 +1,4 @@
+quart
+quart-cors
+PySide6
+requests

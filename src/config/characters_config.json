@@ -1,0 +1,19 @@
+{
+    "characterslist": [
+        "Sample"
+    ],
+    "characterlast": "Sample",
+    "characters": {
+        "Sample": {
+            "name": "Sample",
+            "info": "SampleInfo",
+            "skills": {
+                "strength": "0",
+                "agility": "0",
+                "intellegence": "0",
+                "charisma": "0",
+                "luck": "0"
+            }
+        }
+    }
+}
