@@ -31,7 +31,7 @@ class MainWindow(QMainWindow):
         self.ui.pb_try.clicked.connect(lambda: sendMessage('sendMessage', '/try  '))
 
         self.ui.pb_infoSkills.clicked.connect(lambda: sendMessage('sendMessage', f'\\\{self.skillsLine}'))
-        self.ui.pb_recInfo.clicked.connect(lambda: sendMessage('sendMessage', f'/iam {self.ui.te_info.toPlainText()}'))
+        self.ui.pb_recInfo.clicked.connect(lambda: sendMessage('sendMessage', f'/iam {self.skillsLine} {self.ui.te_info.toPlainText()}'))
 
         # Config tab
         self.ui.pb_select.clicked.connect(lambda: self.actions('select'))
