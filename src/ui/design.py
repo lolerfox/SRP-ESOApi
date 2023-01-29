@@ -510,7 +510,7 @@ class Ui_MainWindow(object):
         self.lb_skillsWarnM.setText(QCoreApplication.translate("MainWindow", u"SkillsWarn", None))
         self.pb_infoSkills.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0431\u044a\u044f\u0432\u0438\u0442\u044c \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e \u043e \u0441\u043a\u0438\u043b\u043b\u0430\u0445 \u0432 \u0447\u0430\u0442", None))
 #if QT_CONFIG(shortcut)
-        self.pb_infoSkills.setShortcut(QCoreApplication.translate("MainWindow", u"8", None))
+        self.pb_infoSkills.setShortcut(QCoreApplication.translate("MainWindow", u"9", None))
 #endif // QT_CONFIG(shortcut)
         self.lbl_8.setText(QCoreApplication.translate("MainWindow", u"9)", None))
         self.pb_recInfo.setText(QCoreApplication.translate("MainWindow", u"\u0412\u043e\u0441\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u044c \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e \u043e \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u0436\u0435", None))
@@ -523,6 +523,9 @@ class Ui_MainWindow(object):
         self.pb_try.setShortcut(QCoreApplication.translate("MainWindow", u"Shift+T", None))
 #endif // QT_CONFIG(shortcut)
         self.pb_ll.setText(QCoreApplication.translate("MainWindow", u"/ll", None))
+#if QT_CONFIG(shortcut)
+        self.pb_ll.setShortcut(QCoreApplication.translate("MainWindow", u"Tab", None))
+#endif // QT_CONFIG(shortcut)
         self.lbl_shift.setText(QCoreApplication.translate("MainWindow", u"Shift+T)", None))
         self.lbl_tab.setText(QCoreApplication.translate("MainWindow", u"Tab)", None))
         self.lbl_2.setText(QCoreApplication.translate("MainWindow", u"2)", None))
@@ -578,4 +581,3 @@ class Ui_MainWindow(object):
 "GNU General Public License", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"About", None))
     # retranslateUi
-
