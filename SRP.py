@@ -1,4 +1,5 @@
 import sys
+import subprocess as sp
 
 from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtGui import QFontDatabase, QIcon, QPixmap
@@ -6,6 +7,8 @@ from PySide6.QtGui import QFontDatabase, QIcon, QPixmap
 from src.ui.design import Ui_MainWindow
 from src.modules.file_descriptor import file_descriptor
 from src.modules.sendMessage import sendMessage
+
+config = file_descriptor("src/config/config.json", 'json', 'r')
 
 
 class MainWindow(QMainWindow):
@@ -18,7 +21,10 @@ class MainWindow(QMainWindow):
         self.setWindowTitle('SRP ESO')
         self.setWindowIcon(QIcon('src/ui/img/SRP ESO.ico'))
 
+        self.aotrun = False
+
         self.refresh()
+        self.AOTautorun()
 
         # Main tab
         self.ui.pb_strength.clicked.connect(lambda: sendMessage('dice', '\\\Cила:', f'/dice {self.ui.le_strength.text()}d6', self.skillcount, self.skillsLine))
@@ -33,6 +39,9 @@ class MainWindow(QMainWindow):
         self.ui.pb_infoSkills.clicked.connect(lambda: sendMessage('sendMessage', f'\\\{self.skillsLine}'))
         self.ui.pb_recInfo.clicked.connect(lambda: sendMessage('sendMessage', f'/iam {self.skillsLine} {self.ui.te_info.toPlainText()}'))
 
+        self.ui.pb_AOTon.clicked.connect(lambda: self.AOTrun())
+        self.ui.pb_AOTauto.clicked.connect(lambda: self.AOTauto())
+
         # Config tab
         self.ui.pb_select.clicked.connect(lambda: self.actions('select'))
         self.ui.pb_create.clicked.connect(lambda: self.actions('create'))
@@ -45,6 +54,33 @@ class MainWindow(QMainWindow):
 
         about = file_descriptor('README.txt', 'txt', 'r')
         self.ui.te_about.setText(about)
+
+    def AOTrun(self):
+        if not self.aotrun:
+            self.aot = sp.Popen('src/ui/AOTandSO/AOTandSO.exe', shell=False)
+            self.ui.pb_AOTon.setText('Закрыть AOTandSO')
+            self.aotrun = True
+        elif self.aotrun:
+            self.aot.terminate()
+            self.ui.pb_AOTon.setText('Запустить AOTandSO')
+            self.aotrun = False
+
+    def AOTauto(self):
+        if config['settings']['aotautorun']:
+            self.ui.pb_AOTauto.setText('Авто запуск AOTandESO:False')
+            config['settings']['aotautorun'] = False
+        else:
+            self.ui.pb_AOTauto.setText('Авто запуск AOTandESO:True')
+            config['settings']['aotautorun'] = True
+
+        file_descriptor("src/config/config.json", 'json', 'w', config)
+
+    def AOTautorun(self):
+        if self.aotautorun:
+            self.aot = sp.Popen('src/ui/AOTandSO/AOTandSO.exe', shell=False)
+            self.ui.pb_AOTauto.setText('Авто запуск AOTandESO:True')
+            self.ui.pb_AOTon.setText('Закрыть AOTandSO')
+            self.aotrun = True
 
     def actions(self, type):
         ch_config = file_descriptor("src/config/characters_config.json", 'json', 'r')
@@ -86,6 +122,8 @@ class MainWindow(QMainWindow):
     def refresh(self) -> None:
         ch_config = file_descriptor("src/config/characters_config.json", 'json', 'r')
 
+        self.aotautorun = config['settings']['aotautorun']
+
         self.ui.cb_character.clear()
         self.ui.cb_character.addItems(ch_config['characterslist'])
         self.ui.cb_character.setCurrentText(ch_config['characterlast'])
@@ -115,9 +153,9 @@ class MainWindow(QMainWindow):
 
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
+        app = QApplication(sys.argv)
 
-    window = MainWindow()
-    window.show()
+        window = MainWindow()
+        window.show()
 
-    sys.exit(app.exec())
+        sys.exit(app.exec())

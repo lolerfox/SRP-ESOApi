@@ -24,7 +24,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(308, 463)
+        MainWindow.resize(308, 454)
         MainWindow.setStyleSheet(u"\n"
 "QWidget {\n"
 "    color: white;\n"
@@ -92,9 +92,17 @@ class Ui_MainWindow(object):
         self.tab_1.setStyleSheet(u"")
         self.gridLayout_9 = QGridLayout(self.tab_1)
         self.gridLayout_9.setObjectName(u"gridLayout_9")
-        self.verticalSpacer_6 = QSpacerItem(0, 10, QSizePolicy.Minimum, QSizePolicy.Fixed)
+        self.verticalSpacer_15 = QSpacerItem(0, 10, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.gridLayout_9.addItem(self.verticalSpacer_6, 8, 0, 1, 1)
+        self.gridLayout_9.addItem(self.verticalSpacer_15, 13, 0, 1, 1)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_9.addItem(self.horizontalSpacer_2, 7, 1, 1, 1)
+
+        self.verticalSpacer_4 = QSpacerItem(0, 10, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout_9.addItem(self.verticalSpacer_4, 5, 0, 1, 1)
 
         self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
@@ -120,36 +128,21 @@ class Ui_MainWindow(object):
 
         self.gridLayout_9.addItem(self.verticalSpacer_7, 2, 0, 1, 1)
 
-        self.verticalSpacer_4 = QSpacerItem(0, 10, QSizePolicy.Minimum, QSizePolicy.Fixed)
-
-        self.gridLayout_9.addItem(self.verticalSpacer_4, 5, 0, 1, 1)
-
-        self.verticalSpacer_15 = QSpacerItem(0, 10, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.gridLayout_9.addItem(self.verticalSpacer_15, 10, 0, 1, 1)
-
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_9.addItem(self.horizontalSpacer_2, 7, 1, 1, 1)
-
         self.gridLayout_6 = QGridLayout()
         self.gridLayout_6.setObjectName(u"gridLayout_6")
-        self.pb_infoSkills = QPushButton(self.tab_1)
-        self.pb_infoSkills.setObjectName(u"pb_infoSkills")
+        self.lbl_8 = QLabel(self.tab_1)
+        self.lbl_8.setObjectName(u"lbl_8")
         sizePolicy = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pb_infoSkills.sizePolicy().hasHeightForWidth())
-        self.pb_infoSkills.setSizePolicy(sizePolicy)
-
-        self.gridLayout_6.addWidget(self.pb_infoSkills, 0, 1, 1, 1)
-
-        self.lbl_8 = QLabel(self.tab_1)
-        self.lbl_8.setObjectName(u"lbl_8")
         sizePolicy.setHeightForWidth(self.lbl_8.sizePolicy().hasHeightForWidth())
         self.lbl_8.setSizePolicy(sizePolicy)
 
         self.gridLayout_6.addWidget(self.lbl_8, 0, 0, 1, 1)
+
+        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_6.addItem(self.horizontalSpacer_7, 2, 2, 1, 1)
 
         self.pb_recInfo = QPushButton(self.tab_1)
         self.pb_recInfo.setObjectName(u"pb_recInfo")
@@ -165,49 +158,15 @@ class Ui_MainWindow(object):
 
         self.gridLayout_6.addWidget(self.lbl_0, 2, 0, 1, 1)
 
-        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.pb_infoSkills = QPushButton(self.tab_1)
+        self.pb_infoSkills.setObjectName(u"pb_infoSkills")
+        sizePolicy.setHeightForWidth(self.pb_infoSkills.sizePolicy().hasHeightForWidth())
+        self.pb_infoSkills.setSizePolicy(sizePolicy)
 
-        self.gridLayout_6.addItem(self.horizontalSpacer_7, 2, 2, 1, 1)
+        self.gridLayout_6.addWidget(self.pb_infoSkills, 0, 1, 1, 1)
 
 
         self.gridLayout_9.addLayout(self.gridLayout_6, 9, 0, 1, 1)
-
-        self.gridLayout_7 = QGridLayout()
-        self.gridLayout_7.setObjectName(u"gridLayout_7")
-        self.pb_try = QPushButton(self.tab_1)
-        self.pb_try.setObjectName(u"pb_try")
-        sizePolicy.setHeightForWidth(self.pb_try.sizePolicy().hasHeightForWidth())
-        self.pb_try.setSizePolicy(sizePolicy)
-
-        self.gridLayout_7.addWidget(self.pb_try, 1, 1, 1, 1)
-
-        self.pb_ll = QPushButton(self.tab_1)
-        self.pb_ll.setObjectName(u"pb_ll")
-        sizePolicy.setHeightForWidth(self.pb_ll.sizePolicy().hasHeightForWidth())
-        self.pb_ll.setSizePolicy(sizePolicy)
-
-        self.gridLayout_7.addWidget(self.pb_ll, 0, 1, 1, 1)
-
-        self.lbl_shift = QLabel(self.tab_1)
-        self.lbl_shift.setObjectName(u"lbl_shift")
-        sizePolicy.setHeightForWidth(self.lbl_shift.sizePolicy().hasHeightForWidth())
-        self.lbl_shift.setSizePolicy(sizePolicy)
-
-        self.gridLayout_7.addWidget(self.lbl_shift, 1, 0, 1, 1)
-
-        self.lbl_tab = QLabel(self.tab_1)
-        self.lbl_tab.setObjectName(u"lbl_tab")
-        sizePolicy.setHeightForWidth(self.lbl_tab.sizePolicy().hasHeightForWidth())
-        self.lbl_tab.setSizePolicy(sizePolicy)
-
-        self.gridLayout_7.addWidget(self.lbl_tab, 0, 0, 1, 1)
-
-        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_7.addItem(self.horizontalSpacer_6, 1, 2, 1, 1)
-
-
-        self.gridLayout_9.addLayout(self.gridLayout_7, 7, 0, 1, 1)
 
         self.gridLayout_4 = QGridLayout()
         self.gridLayout_4.setObjectName(u"gridLayout_4")
@@ -289,6 +248,75 @@ class Ui_MainWindow(object):
 
         self.gridLayout_9.addLayout(self.gridLayout_4, 4, 0, 1, 1)
 
+        self.verticalSpacer_6 = QSpacerItem(0, 10, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout_9.addItem(self.verticalSpacer_6, 8, 0, 1, 1)
+
+        self.gridLayout_14 = QGridLayout()
+        self.gridLayout_14.setObjectName(u"gridLayout_14")
+        self.pb_AOTauto = QPushButton(self.tab_1)
+        self.pb_AOTauto.setObjectName(u"pb_AOTauto")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.pb_AOTauto.sizePolicy().hasHeightForWidth())
+        self.pb_AOTauto.setSizePolicy(sizePolicy1)
+        self.pb_AOTauto.setMinimumSize(QSize(150, 0))
+
+        self.gridLayout_14.addWidget(self.pb_AOTauto, 1, 0, 1, 1, Qt.AlignHCenter)
+
+        self.pb_AOTon = QPushButton(self.tab_1)
+        self.pb_AOTon.setObjectName(u"pb_AOTon")
+        sizePolicy1.setHeightForWidth(self.pb_AOTon.sizePolicy().hasHeightForWidth())
+        self.pb_AOTon.setSizePolicy(sizePolicy1)
+        self.pb_AOTon.setMinimumSize(QSize(150, 0))
+
+        self.gridLayout_14.addWidget(self.pb_AOTon, 0, 0, 1, 1, Qt.AlignHCenter)
+
+
+        self.gridLayout_9.addLayout(self.gridLayout_14, 11, 0, 1, 1)
+
+        self.gridLayout_7 = QGridLayout()
+        self.gridLayout_7.setObjectName(u"gridLayout_7")
+        self.pb_try = QPushButton(self.tab_1)
+        self.pb_try.setObjectName(u"pb_try")
+        sizePolicy.setHeightForWidth(self.pb_try.sizePolicy().hasHeightForWidth())
+        self.pb_try.setSizePolicy(sizePolicy)
+
+        self.gridLayout_7.addWidget(self.pb_try, 1, 1, 1, 1)
+
+        self.pb_ll = QPushButton(self.tab_1)
+        self.pb_ll.setObjectName(u"pb_ll")
+        sizePolicy.setHeightForWidth(self.pb_ll.sizePolicy().hasHeightForWidth())
+        self.pb_ll.setSizePolicy(sizePolicy)
+
+        self.gridLayout_7.addWidget(self.pb_ll, 0, 1, 1, 1)
+
+        self.lbl_shift = QLabel(self.tab_1)
+        self.lbl_shift.setObjectName(u"lbl_shift")
+        sizePolicy.setHeightForWidth(self.lbl_shift.sizePolicy().hasHeightForWidth())
+        self.lbl_shift.setSizePolicy(sizePolicy)
+
+        self.gridLayout_7.addWidget(self.lbl_shift, 1, 0, 1, 1)
+
+        self.lbl_tab = QLabel(self.tab_1)
+        self.lbl_tab.setObjectName(u"lbl_tab")
+        sizePolicy.setHeightForWidth(self.lbl_tab.sizePolicy().hasHeightForWidth())
+        self.lbl_tab.setSizePolicy(sizePolicy)
+
+        self.gridLayout_7.addWidget(self.lbl_tab, 0, 0, 1, 1)
+
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_7.addItem(self.horizontalSpacer_6, 1, 2, 1, 1)
+
+
+        self.gridLayout_9.addLayout(self.gridLayout_7, 7, 0, 1, 1)
+
+        self.verticalSpacer_8 = QSpacerItem(0, 10, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout_9.addItem(self.verticalSpacer_8, 10, 0, 1, 1)
+
         self.tabWidget.addTab(self.tab_1, "")
         self.tab_2 = QWidget()
         self.tab_2.setObjectName(u"tab_2")
@@ -339,11 +367,11 @@ class Ui_MainWindow(object):
 
         self.le_newCh = QLineEdit(self.tab_2)
         self.le_newCh.setObjectName(u"le_newCh")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.le_newCh.sizePolicy().hasHeightForWidth())
-        self.le_newCh.setSizePolicy(sizePolicy1)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.le_newCh.sizePolicy().hasHeightForWidth())
+        self.le_newCh.setSizePolicy(sizePolicy2)
         self.le_newCh.setSizeIncrement(QSize(0, 2))
 
         self.verticalLayout_3.addWidget(self.le_newCh)
@@ -399,11 +427,11 @@ class Ui_MainWindow(object):
 
         self.le_strength = QLineEdit(self.tab_2)
         self.le_strength.setObjectName(u"le_strength")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.le_strength.sizePolicy().hasHeightForWidth())
-        self.le_strength.setSizePolicy(sizePolicy2)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.le_strength.sizePolicy().hasHeightForWidth())
+        self.le_strength.setSizePolicy(sizePolicy3)
         self.le_strength.setMaximumSize(QSize(20, 100))
 
         self.gridLayout.addWidget(self.le_strength, 1, 1, 1, 1)
@@ -415,32 +443,32 @@ class Ui_MainWindow(object):
 
         self.le_agility = QLineEdit(self.tab_2)
         self.le_agility.setObjectName(u"le_agility")
-        sizePolicy2.setHeightForWidth(self.le_agility.sizePolicy().hasHeightForWidth())
-        self.le_agility.setSizePolicy(sizePolicy2)
+        sizePolicy3.setHeightForWidth(self.le_agility.sizePolicy().hasHeightForWidth())
+        self.le_agility.setSizePolicy(sizePolicy3)
         self.le_agility.setMaximumSize(QSize(20, 100))
 
         self.gridLayout.addWidget(self.le_agility, 2, 1, 1, 1)
 
         self.le_intellegence = QLineEdit(self.tab_2)
         self.le_intellegence.setObjectName(u"le_intellegence")
-        sizePolicy2.setHeightForWidth(self.le_intellegence.sizePolicy().hasHeightForWidth())
-        self.le_intellegence.setSizePolicy(sizePolicy2)
+        sizePolicy3.setHeightForWidth(self.le_intellegence.sizePolicy().hasHeightForWidth())
+        self.le_intellegence.setSizePolicy(sizePolicy3)
         self.le_intellegence.setMaximumSize(QSize(20, 100))
 
         self.gridLayout.addWidget(self.le_intellegence, 3, 1, 1, 1)
 
         self.le_charisma = QLineEdit(self.tab_2)
         self.le_charisma.setObjectName(u"le_charisma")
-        sizePolicy2.setHeightForWidth(self.le_charisma.sizePolicy().hasHeightForWidth())
-        self.le_charisma.setSizePolicy(sizePolicy2)
+        sizePolicy3.setHeightForWidth(self.le_charisma.sizePolicy().hasHeightForWidth())
+        self.le_charisma.setSizePolicy(sizePolicy3)
         self.le_charisma.setMaximumSize(QSize(20, 100))
 
         self.gridLayout.addWidget(self.le_charisma, 4, 1, 1, 1)
 
         self.le_luck = QLineEdit(self.tab_2)
         self.le_luck.setObjectName(u"le_luck")
-        sizePolicy2.setHeightForWidth(self.le_luck.sizePolicy().hasHeightForWidth())
-        self.le_luck.setSizePolicy(sizePolicy2)
+        sizePolicy3.setHeightForWidth(self.le_luck.sizePolicy().hasHeightForWidth())
+        self.le_luck.setSizePolicy(sizePolicy3)
         self.le_luck.setMaximumSize(QSize(20, 100))
 
         self.gridLayout.addWidget(self.le_luck, 5, 1, 1, 1)
@@ -465,11 +493,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.lb_logo = QLabel(self.tab_3)
         self.lb_logo.setObjectName(u"lb_logo")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.lb_logo.sizePolicy().hasHeightForWidth())
-        self.lb_logo.setSizePolicy(sizePolicy3)
+        sizePolicy1.setHeightForWidth(self.lb_logo.sizePolicy().hasHeightForWidth())
+        self.lb_logo.setSizePolicy(sizePolicy1)
         self.lb_logo.setMinimumSize(QSize(100, 100))
         self.lb_logo.setMaximumSize(QSize(100, 100))
         self.lb_logo.setScaledContents(True)
@@ -508,26 +533,16 @@ class Ui_MainWindow(object):
         self.lb_nameM.setText(QCoreApplication.translate("MainWindow", u"Name:", None))
         self.lb_skillsM.setText(QCoreApplication.translate("MainWindow", u"Skills:", None))
         self.lb_skillsWarnM.setText(QCoreApplication.translate("MainWindow", u"SkillsWarn", None))
-        self.pb_infoSkills.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0431\u044a\u044f\u0432\u0438\u0442\u044c \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e \u043e \u0441\u043a\u0438\u043b\u043b\u0430\u0445 \u0432 \u0447\u0430\u0442", None))
-#if QT_CONFIG(shortcut)
-        self.pb_infoSkills.setShortcut(QCoreApplication.translate("MainWindow", u"9", None))
-#endif // QT_CONFIG(shortcut)
         self.lbl_8.setText(QCoreApplication.translate("MainWindow", u"9)", None))
         self.pb_recInfo.setText(QCoreApplication.translate("MainWindow", u"\u0412\u043e\u0441\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u044c \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e \u043e \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u0436\u0435", None))
 #if QT_CONFIG(shortcut)
         self.pb_recInfo.setShortcut(QCoreApplication.translate("MainWindow", u"0", None))
 #endif // QT_CONFIG(shortcut)
         self.lbl_0.setText(QCoreApplication.translate("MainWindow", u"0)", None))
-        self.pb_try.setText(QCoreApplication.translate("MainWindow", u"/try", None))
+        self.pb_infoSkills.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0431\u044a\u044f\u0432\u0438\u0442\u044c \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e \u043e \u0441\u043a\u0438\u043b\u043b\u0430\u0445 \u0432 \u0447\u0430\u0442", None))
 #if QT_CONFIG(shortcut)
-        self.pb_try.setShortcut(QCoreApplication.translate("MainWindow", u"Shift+T", None))
+        self.pb_infoSkills.setShortcut(QCoreApplication.translate("MainWindow", u"9", None))
 #endif // QT_CONFIG(shortcut)
-        self.pb_ll.setText(QCoreApplication.translate("MainWindow", u"/ll", None))
-#if QT_CONFIG(shortcut)
-        self.pb_ll.setShortcut(QCoreApplication.translate("MainWindow", u"Tab", None))
-#endif // QT_CONFIG(shortcut)
-        self.lbl_shift.setText(QCoreApplication.translate("MainWindow", u"Shift+T)", None))
-        self.lbl_tab.setText(QCoreApplication.translate("MainWindow", u"Tab)", None))
         self.lbl_2.setText(QCoreApplication.translate("MainWindow", u"2)", None))
         self.lbl_4.setText(QCoreApplication.translate("MainWindow", u"4)", None))
         self.pb_intellegence.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0440\u0438\u043c\u0435\u043d\u0438\u0442\u044c \u0418\u043d\u0442\u0435\u043b\u043b\u0435\u043a\u0442", None))
@@ -553,6 +568,24 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(shortcut)
         self.lbl_3.setText(QCoreApplication.translate("MainWindow", u"3)", None))
         self.lbl_1.setText(QCoreApplication.translate("MainWindow", u"1)", None))
+        self.pb_AOTauto.setText(QCoreApplication.translate("MainWindow", u"\u0410\u0432\u0442\u043e \u0437\u0430\u043f\u0443\u0441\u043a AOTandESO:False", None))
+#if QT_CONFIG(shortcut)
+        self.pb_AOTauto.setShortcut(QCoreApplication.translate("MainWindow", u"9", None))
+#endif // QT_CONFIG(shortcut)
+        self.pb_AOTon.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043f\u0443\u0441\u0442\u0438\u0442\u044c AOTandSO", None))
+#if QT_CONFIG(shortcut)
+        self.pb_AOTon.setShortcut(QCoreApplication.translate("MainWindow", u"9", None))
+#endif // QT_CONFIG(shortcut)
+        self.pb_try.setText(QCoreApplication.translate("MainWindow", u"/try", None))
+#if QT_CONFIG(shortcut)
+        self.pb_try.setShortcut(QCoreApplication.translate("MainWindow", u"Shift+T", None))
+#endif // QT_CONFIG(shortcut)
+        self.pb_ll.setText(QCoreApplication.translate("MainWindow", u"/ll", None))
+#if QT_CONFIG(shortcut)
+        self.pb_ll.setShortcut(QCoreApplication.translate("MainWindow", u"Tab", None))
+#endif // QT_CONFIG(shortcut)
+        self.lbl_shift.setText(QCoreApplication.translate("MainWindow", u"Shift+T)", None))
+        self.lbl_tab.setText(QCoreApplication.translate("MainWindow", u"Tab)", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_1), QCoreApplication.translate("MainWindow", u"Main", None))
         self.le_name.setText("")
         self.lbl_info.setText(QCoreApplication.translate("MainWindow", u"Info", None))
@@ -581,3 +614,4 @@ class Ui_MainWindow(object):
 "GNU General Public License", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"About", None))
     # retranslateUi
+
