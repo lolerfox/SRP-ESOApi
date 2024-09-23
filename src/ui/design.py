@@ -568,11 +568,11 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(shortcut)
         self.lbl_3.setText(QCoreApplication.translate("MainWindow", u"3)", None))
         self.lbl_1.setText(QCoreApplication.translate("MainWindow", u"1)", None))
-        self.pb_AOTauto.setText(QCoreApplication.translate("MainWindow", u"\u0410\u0432\u0442\u043e \u0437\u0430\u043f\u0443\u0441\u043a AOTandESO:False", None))
+        self.pb_AOTauto.setText(QCoreApplication.translate("MainWindow", u"AOTandESO:False", None))
 #if QT_CONFIG(shortcut)
         self.pb_AOTauto.setShortcut(QCoreApplication.translate("MainWindow", u"9", None))
 #endif // QT_CONFIG(shortcut)
-        self.pb_AOTon.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043f\u0443\u0441\u0442\u0438\u0442\u044c AOTandSO", None))
+        self.pb_AOTon.setText(QCoreApplication.translate("MainWindow", u"Activate Focus Mode (F2 and F3)", None))
 #if QT_CONFIG(shortcut)
         self.pb_AOTon.setShortcut(QCoreApplication.translate("MainWindow", u"9", None))
 #endif // QT_CONFIG(shortcut)
@@ -614,4 +614,3 @@ class Ui_MainWindow(object):
 "GNU General Public License", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"About", None))
     # retranslateUi
-

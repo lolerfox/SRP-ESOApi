@@ -1,6 +1,5 @@
 from quart import Quart, request, jsonify
 from quart_cors import cors
-
 from file_descriptor import file_descriptor
 
 config = file_descriptor("src/config/config.json", 'json', 'r')
@@ -15,7 +14,6 @@ def pushCommand(esoCommand):
 
 app = Quart(__name__)
 app = cors(app)
-
 
 @app.route('/commands', methods=['POST', 'GET'])
 async def commands():
@@ -38,3 +36,4 @@ async def commands():
 
 if __name__ == '__main__':
     app.run(host=config['settings']['server_ip'], port=config['settings']['server_port'])
+    # app.run(host='localhost', port=9673)

@@ -4,7 +4,8 @@
         "server_port": 9673,
         "endpoint": "commands",
         "headers": {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Connection": "keep-alive"
         },
         "aotautorun": false
     }

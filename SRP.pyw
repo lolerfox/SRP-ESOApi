@@ -3,12 +3,13 @@ import subprocess as sp
 
 from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtGui import QFontDatabase, QIcon, QPixmap
+from PySide6.QtCore import Qt
 
 from src.ui.design import Ui_MainWindow
 from src.modules.file_descriptor import file_descriptor
 from src.modules.sendMessage import sendMessage
 
-config = file_descriptor("src/config/config.json", 'json', 'r')
+cfg = file_descriptor("src/config/config.json", 'json', 'r')
 
 
 class MainWindow(QMainWindow):
@@ -16,6 +17,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        # self.setWindowFlag(Qt.WindowStaysOnTopHint, True)
 
         QFontDatabase.addApplicationFont('Fonts/Rubik-Regular.ttf')
         self.setWindowTitle('SRP ESO')
@@ -24,7 +26,8 @@ class MainWindow(QMainWindow):
         self.aotrun = False
 
         self.refresh()
-        self.AOTautorun()
+        self.Focus()
+        self.AOTrun()
 
         # Main tab
         self.ui.pb_strength.clicked.connect(lambda: sendMessage('dice', '\\\Cила:', f'/dice {self.ui.le_strength.text()}d6', self.skillcount, self.skillsLine))
@@ -39,8 +42,8 @@ class MainWindow(QMainWindow):
         self.ui.pb_infoSkills.clicked.connect(lambda: sendMessage('sendMessage', f'\\\{self.skillsLine}'))
         self.ui.pb_recInfo.clicked.connect(lambda: sendMessage('sendMessage', f'/iam {self.skillsLine} {self.ui.te_info.toPlainText()}'))
 
-        self.ui.pb_AOTon.clicked.connect(lambda: self.AOTrun())
-        self.ui.pb_AOTauto.clicked.connect(lambda: self.AOTauto())
+        self.ui.pb_AOTon.clicked.connect(lambda: self.Focus())
+        self.ui.pb_AOTauto.clicked.connect(lambda: self.AOTswitch())
 
         # Config tab
         self.ui.pb_select.clicked.connect(lambda: self.actions('select'))
@@ -56,86 +59,80 @@ class MainWindow(QMainWindow):
         self.ui.te_about.setText(about)
 
     def AOTrun(self):
-        if not self.aotrun:
-            self.aot = sp.Popen('src/ui/AOTandSO/AOTandSO.exe', shell=False)
-            self.ui.pb_AOTon.setText('Закрыть AOTandSO')
-            self.aotrun = True
-        elif self.aotrun:
-            self.aot.terminate()
-            self.ui.pb_AOTon.setText('Запустить AOTandSO')
-            self.aotrun = False
+        if cfg['settings']['aotautorun']:
+            self.setWindowFlag(Qt.WindowStaysOnTopHint, True)
+            self.ui.pb_AOTauto.setText('Always On Top: True')
+            self.show()
 
-    def AOTauto(self):
-        if config['settings']['aotautorun']:
-            self.ui.pb_AOTauto.setText('Авто запуск AOTandESO:False')
-            config['settings']['aotautorun'] = False
+    def AOTswitch(self):
+        if cfg['settings']['aotautorun']:
+            self.setWindowFlag(Qt.WindowStaysOnTopHint, False)
+            self.ui.pb_AOTauto.setText('Always On Top: False')
+            cfg['settings']['aotautorun'] = False
         else:
-            self.ui.pb_AOTauto.setText('Авто запуск AOTandESO:True')
-            config['settings']['aotautorun'] = True
+            self.setWindowFlag(Qt.WindowStaysOnTopHint, True)
+            self.ui.pb_AOTauto.setText('Always On Top: True')
+            cfg['settings']['aotautorun'] = True
+        self.show()
+        file_descriptor("src/config/config.json", 'json', 'w', cfg)
 
-        file_descriptor("src/config/config.json", 'json', 'w', config)
-
-    def AOTautorun(self):
-        if self.aotautorun:
-            self.aot = sp.Popen('src/ui/AOTandSO/AOTandSO.exe', shell=False)
-            self.ui.pb_AOTauto.setText('Авто запуск AOTandESO:True')
-            self.ui.pb_AOTon.setText('Закрыть AOTandSO')
-            self.aotrun = True
+    def Focus(self):
+            self.aot = sp.Popen('src/ui/Focus/Focus.exe', shell=False)
 
     def actions(self, type):
-        ch_config = file_descriptor("src/config/characters_config.json", 'json', 'r')
+        ch_cfg = file_descriptor("src/config/characters_config.json", 'json', 'r')
 
         if type == 'select':
             print(self.ui.cb_character.currentText())
-            ch_config['characterlast'] = self.ui.cb_character.currentText()
+            ch_cfg['characterlast'] = self.ui.cb_character.currentText()
 
         if type == 'create':
             if self.ui.le_newCh.text() != "":
-                ch_config['characterslist'].append(self.ui.le_newCh.text())
-                ch_config['characterlast'] = self.ui.le_newCh.text()
-                ch_config['characters'][self.ui.le_newCh.text()] = {"name": "SampleName", "info": "SampleInfo", "skills": {"strength": "0", "agility": "0", "intellegence": "0", "charisma": "0", "luck": "0"}}
+                ch_cfg['characterslist'].append(self.ui.le_newCh.text())
+                ch_cfg['characterlast'] = self.ui.le_newCh.text()
+                ch_cfg['characters'][self.ui.le_newCh.text()] = {"name": "SampleName", "info": "SampleInfo", "skills": {"strength": "0", "agility": "0", "intellegence": "0", "charisma": "0", "luck": "0"}}
                 self.ui.le_newCh.setText('')
 
         elif type == 'del':
-            ch_config['characters'].pop(self.ui.cb_character.currentText())
-            ch_config['characterslist'].remove(self.ui.cb_character.currentText())
-            ch_config['characterlast'] = ch_config['characterslist'][-1]
+            ch_cfg['characters'].pop(self.ui.cb_character.currentText())
+            ch_cfg['characterslist'].remove(self.ui.cb_character.currentText())
+            ch_cfg['characterlast'] = ch_cfg['characterslist'][-1]
 
-        file_descriptor("src/config/characters_config.json", 'json', 'w', ch_config)
+        file_descriptor("src/config/characters_config.json", 'json', 'w', ch_cfg)
         self.refresh()
 
     def save(self) -> None:
-        ch_config = file_descriptor("src/config/characters_config.json", 'json', 'r')
+        ch_cfg = file_descriptor("src/config/characters_config.json", 'json', 'r')
 
-        ch_config['characters'][ch_config['characterlast']]['name'] = self.ui.le_name.text()
-        ch_config['characters'][ch_config['characterlast']]['info'] = self.ui.te_info.toPlainText()
+        ch_cfg['characters'][ch_cfg['characterlast']]['name'] = self.ui.le_name.text()
+        ch_cfg['characters'][ch_cfg['characterlast']]['info'] = self.ui.te_info.toPlainText()
 
-        ch_config['characters'][ch_config['characterlast']]['skills']['strength'] = self.ui.le_strength.text()
-        ch_config['characters'][ch_config['characterlast']]['skills']['agility'] = self.ui.le_agility.text()
-        ch_config['characters'][ch_config['characterlast']]['skills']['intellegence'] = self.ui.le_intellegence.text()
-        ch_config['characters'][ch_config['characterlast']]['skills']['charisma'] = self.ui.le_charisma.text()
-        ch_config['characters'][ch_config['characterlast']]['skills']['luck'] = self.ui.le_luck.text()
+        ch_cfg['characters'][ch_cfg['characterlast']]['skills']['strength'] = self.ui.le_strength.text()
+        ch_cfg['characters'][ch_cfg['characterlast']]['skills']['agility'] = self.ui.le_agility.text()
+        ch_cfg['characters'][ch_cfg['characterlast']]['skills']['intellegence'] = self.ui.le_intellegence.text()
+        ch_cfg['characters'][ch_cfg['characterlast']]['skills']['charisma'] = self.ui.le_charisma.text()
+        ch_cfg['characters'][ch_cfg['characterlast']]['skills']['luck'] = self.ui.le_luck.text()
 
-        file_descriptor("src/config/characters_config.json", 'json', 'w', ch_config)
+        file_descriptor("src/config/characters_config.json", 'json', 'w', ch_cfg)
         self.refresh()
 
     def refresh(self) -> None:
-        ch_config = file_descriptor("src/config/characters_config.json", 'json', 'r')
+        ch_cfg = file_descriptor("src/config/characters_config.json", 'json', 'r')
 
-        self.aotautorun = config['settings']['aotautorun']
+        self.aotautorun = cfg['settings']['aotautorun']
 
         self.ui.cb_character.clear()
-        self.ui.cb_character.addItems(ch_config['characterslist'])
-        self.ui.cb_character.setCurrentText(ch_config['characterlast'])
+        self.ui.cb_character.addItems(ch_cfg['characterslist'])
+        self.ui.cb_character.setCurrentText(ch_cfg['characterlast'])
 
-        self.ui.le_name.setText(ch_config['characters'][ch_config['characterlast']]['name'])
-        self.ui.te_info.setText(ch_config['characters'][ch_config['characterlast']]['info'])
+        self.ui.le_name.setText(ch_cfg['characters'][ch_cfg['characterlast']]['name'])
+        self.ui.te_info.setText(ch_cfg['characters'][ch_cfg['characterlast']]['info'])
 
-        self.ui.le_strength.setText(ch_config['characters'][ch_config['characterlast']]['skills']['strength'])
-        self.ui.le_agility.setText(ch_config['characters'][ch_config['characterlast']]['skills']['agility'])
-        self.ui.le_intellegence.setText(ch_config['characters'][ch_config['characterlast']]['skills']['intellegence'])
-        self.ui.le_charisma.setText(ch_config['characters'][ch_config['characterlast']]['skills']['charisma'])
-        self.ui.le_luck.setText(ch_config['characters'][ch_config['characterlast']]['skills']['luck'])
+        self.ui.le_strength.setText(ch_cfg['characters'][ch_cfg['characterlast']]['skills']['strength'])
+        self.ui.le_agility.setText(ch_cfg['characters'][ch_cfg['characterlast']]['skills']['agility'])
+        self.ui.le_intellegence.setText(ch_cfg['characters'][ch_cfg['characterlast']]['skills']['intellegence'])
+        self.ui.le_charisma.setText(ch_cfg['characters'][ch_cfg['characterlast']]['skills']['charisma'])
+        self.ui.le_luck.setText(ch_cfg['characters'][ch_cfg['characterlast']]['skills']['luck'])
 
         self.ui.lb_nameM.setText('Name: ' + self.ui.le_name.text())
         self.skillsLine = '|Сил ' + self.ui.le_strength.text() + ' Лов '+ self.ui.le_agility.text() + ' Инт ' + self.ui.le_intellegence.text() + ' Хар ' +self.ui.le_charisma.text() + ' Удч ' + self.ui.le_luck.text()+'|'
